@@ -1,0 +1,517 @@
+/* =========================================================
+   Halaman Katalog: Pustakawan, Petugas, dan Pustakawan Umum
+   ========================================================= */
+
+/* ---------- Layout tabel + panel samping ---------- */
+.kp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 16px;
+  align-items: start;
+}
+
+.kp-layout .panel {
+  margin-bottom: 0;
+}
+
+.kp-side {
+  display: grid;
+  gap: 16px;
+}
+
+.kp-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.kp-q {
+  flex: 1;
+  min-width: 220px;
+  width: auto;
+}
+
+.kp-judul {
+  font-weight: 600;
+  max-width: 320px;
+}
+
+/* ---------- Ringkasan ---------- */
+.kp-sum {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kp-sum li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.kp-sum span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.kp-sum b {
+  font-size: 15px;
+}
+
+/* ---------- Bar per kategori ---------- */
+.kp-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.kp-bar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.kp-bar-top span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.kp-bar-rail {
+  display: block;
+  height: 9px;
+  border-radius: 999px;
+  background: #eef1f6;
+  overflow: hidden;
+}
+
+.kp-bar-rail i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f87171, var(--accent));
+  transform-origin: left;
+  animation: kpGrow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.kp-bar-rail i.is-full {
+  background: linear-gradient(90deg, #34d399, var(--green));
+}
+
+@keyframes kpGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* =========================================================
+   KATALOG PETUGAS — progress, tab, daftar kontrol
+   ========================================================= */
+.kt-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kt-progress-rail {
+  flex: 1;
+  height: 12px;
+  border-radius: 999px;
+  background: #eef1f6;
+  overflow: hidden;
+}
+
+.kt-progress-rail i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #34d399, var(--green));
+  transition: width 0.6s ease;
+}
+
+.kt-progress b {
+  font-size: 15px;
+  color: var(--green);
+}
+
+.kt-progress-note {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.kt-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.kt-tab {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #475569;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.kt-tab:hover {
+  background: #f8fafc;
+}
+
+.kt-tab.is-on {
+  background: linear-gradient(135deg, #f87171, var(--accent));
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.3);
+}
+
+.kt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.kt-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.kt-item:last-child {
+  border-bottom: none;
+}
+
+.kt-item:hover {
+  background: #f8fafc;
+}
+
+.kt-no {
+  width: 22px;
+  flex: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.kt-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.kt-body strong {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kt-body small {
+  font-size: 12px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kt-status {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.kt-status.ok {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.kt-status.warn {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.kt-report {
+  margin-top: 16px;
+}
+
+/* =========================================================
+   KATALOG PUSTAKAWAN UMUM
+   ========================================================= */
+.ku-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #fff5f5 0%, #eff6ff 100%);
+}
+
+.ku-hero-ico {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  flex: none;
+  font-size: 26px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.ku-hero-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ku-search {
+  position: relative;
+}
+
+.ku-search input {
+  width: 100%;
+  padding: 12px 14px 12px 38px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.ku-search input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14);
+}
+
+.ku-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ku-chip {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #475569;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.ku-chip:hover {
+  border-color: #cbd5e1;
+}
+
+.ku-chip.is-on {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #fff;
+}
+
+/* ---------- Grid kartu umum ---------- */
+.ku-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+  gap: 16px;
+}
+
+.ku-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ku-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
+}
+
+.ku-cover {
+  position: relative;
+  padding: 12px 12px 0;
+}
+
+.ku-kat {
+  position: absolute;
+  bottom: 12px;
+  left: 22px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.ku-body {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px 16px 16px;
+  flex: 1;
+}
+
+.ku-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  min-height: 42px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ku-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.ku-author .avatar {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+
+.ku-meta {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding-top: 11px;
+  border-top: 1px dashed var(--line);
+}
+
+.ku-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ku-meta dt {
+  font-size: 10px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.ku-meta dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ku-penerbit {
+  margin-top: auto;
+  font-size: 12.5px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ku-foot {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1180px) {
+  .kp-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .kp-side {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .kp-side {
+    grid-template-columns: 1fr;
+  }
+
+  .ku-hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ku-hero-ico {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .kt-item {
+    flex-wrap: wrap;
+  }
+
+  .kt-body {
+    flex: 1 1 auto;
+  }
+
+  .kt-status {
+    order: 5;
+    margin-left: 34px;
+  }
+
+  .ku-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  }
+}

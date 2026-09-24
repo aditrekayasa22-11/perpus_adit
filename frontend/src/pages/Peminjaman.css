@@ -1,0 +1,150 @@
+/* =========================================================
+   Halaman peminjaman (petugas/admin) & peminjaman-saya (siswa)
+   ========================================================= */
+
+/* Tab filter status */
+.pm-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.pm-tab {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.pm-tab:hover {
+  border-color: #cbd5e1;
+  color: var(--ink);
+}
+
+.pm-tab.is-on {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #fff;
+}
+
+.pm-tab .n {
+  display: inline-block;
+  min-width: 20px;
+  margin-left: 5px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 11.5px;
+}
+
+.pm-tab.is-on .n {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Pill status peminjaman */
+.pm-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pm-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pm-status.s-menunggu {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.pm-status.s-dipinjam {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.pm-status.s-dikembalikan {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Info tanggal kecil di bawah judul */
+.pm-date {
+  display: block;
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* Sel aksi tombol proses */
+.pm-act {
+  white-space: nowrap;
+}
+
+.pm-act .btn {
+  margin: 0 3px;
+}
+
+/* Detail peminjaman (expandable info) */
+.pm-note {
+  display: block;
+  max-width: 240px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Kartu ringkasan alur pada dashboard petugas */
+.pm-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.pm-flow-card {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.pm-flow-card strong {
+  display: block;
+  font-size: 13.5px;
+  margin-bottom: 4px;
+}
+
+.pm-flow-card span {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .pm-tabs {
+    gap: 6px;
+  }
+
+  .pm-note {
+    max-width: 150px;
+  }
+}

@@ -1,0 +1,407 @@
+/* =========================================================
+   Halaman Kategori Buku, Laporan Buku, dan JSON API Endpoint
+   ========================================================= */
+
+/* ---------- Bar sebaran (dipakai kategori & laporan) ---------- */
+.bar-rail {
+  width: 100%;
+  min-width: 90px;
+  height: 9px;
+  border-radius: 999px;
+  background: #eef1f6;
+  overflow: hidden;
+}
+
+.bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #60a5fa, #2563eb);
+  transform-origin: left;
+  animation: barGrow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.bar-fill.alt {
+  background: linear-gradient(90deg, #34d399, #059669);
+}
+
+.bar-fill.alt2 {
+  background: linear-gradient(90deg, #fbbf24, #ea580c);
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* =========================================================
+   KATEGORI BUKU
+   ========================================================= */
+.kat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.kat-card {
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 17px 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.kat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+}
+
+.kat-card.tone-blue   { --accent: #2563eb; --accent-soft: #dbeafe; }
+.kat-card.tone-rose   { --accent: #e11d48; --accent-soft: #ffe4e6; }
+.kat-card.tone-amber  { --accent: #d97706; --accent-soft: #fef3c7; }
+.kat-card.tone-violet { --accent: #7c3aed; --accent-soft: #ede9fe; }
+.kat-card.tone-green  { --accent: #16a34a; --accent-soft: #dcfce7; }
+.kat-card.tone-teal   { --accent: #0d9488; --accent-soft: #ccfbf1; }
+.kat-card.tone-slate  { --accent: #475569; --accent-soft: #e2e8f0; }
+
+.kat-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kat-ico {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  font-size: 21px;
+  border-radius: 13px;
+  background: var(--accent-soft);
+}
+
+.kat-head {
+  min-width: 0;
+}
+
+.kat-head h2 {
+  font-size: 15.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kat-share {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.kat-count {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.kat-count strong {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.kat-count span {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.kat-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+}
+
+.kat-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kat-meta dt {
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.kat-meta dd {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.kat-contoh {
+  font-size: 12.5px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kat-contoh strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.kat-foot {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.kat-foot .btn {
+  flex: 1;
+}
+
+/* =========================================================
+   LAPORAN BUKU
+   ========================================================= */
+.rp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.rp-full {
+  grid-column: 1 / -1;
+}
+
+.rp-grid .table td,
+.rp-grid .table th {
+  font-size: 13.5px;
+}
+
+/* =========================================================
+   JSON API ENDPOINT
+   ========================================================= */
+.ep-info {
+  padding: 15px 18px;
+}
+
+.ep-info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+}
+
+.ep-info-row span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.ep-info-row b {
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.ep-info-row code {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 12.5px;
+}
+
+.ep-note {
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px dashed var(--line);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.ep-note b {
+  color: var(--red-dark);
+}
+
+.ep-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.ep-list {
+  padding: 8px;
+}
+
+.ep-row {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+
+.ep-row + .ep-row {
+  border-top: 1px solid var(--line);
+}
+
+.ep-row:hover {
+  background: #f8fafc;
+}
+
+.ep-method {
+  display: inline-grid;
+  place-items: center;
+  padding: 5px 0;
+  border-radius: 7px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #fff;
+}
+
+.m-get    { background: #2563eb; }
+.m-post   { background: #16a34a; }
+.m-put    { background: #d97706; }
+.m-delete { background: #dc2626; }
+
+.ep-path {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ep-path code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ep-path small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.ep-auth {
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ep-auth.need { color: var(--orange); }
+.ep-auth.open { color: var(--green); }
+
+.ep-console-wrap {
+  position: sticky;
+  top: 16px;
+}
+
+.ep-console-title {
+  display: inline-block;
+  margin-bottom: 9px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: #eef2ff;
+  color: var(--blue-dark);
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+
+.ep-console {
+  margin: 0;
+  padding: 14px 15px;
+  max-height: 460px;
+  overflow: auto;
+  border-radius: 11px;
+  background: #0f172a;
+  color: #d1fae5;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ep-placeholder {
+  padding: 44px 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.7;
+  border: 1px dashed var(--line);
+  border-radius: 11px;
+  background: #f8fafc;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1180px) {
+  .ep-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ep-console-wrap {
+    position: static;
+  }
+}
+
+@media (max-width: 980px) {
+  .rp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .kat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ep-row {
+    grid-template-columns: 66px minmax(0, 1fr);
+    row-gap: 8px;
+  }
+
+  .ep-auth {
+    grid-column: 1 / -1;
+  }
+
+  .ep-row .btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}

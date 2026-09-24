@@ -1,0 +1,186 @@
+/* =========================================================
+   Layout — kartu profil sidebar, breadcrumb, dan lencana sekolah
+   (diimpor setelah index.css sehingga menang saat spesifisitas sama)
+   ========================================================= */
+
+/* ---------- Kartu profil admin di sidebar ---------- */
+.side-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 11px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.side-av {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #f87171, #dc2626);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.4);
+}
+
+/* Avatar berisi logo sekolah (PNG transparan) */
+.side-av-logo,
+.avatar-logo {
+  background: #fff;
+  padding: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.side-av-logo img,
+.avatar-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+.su-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.su-meta strong {
+  font-size: 12.5px;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.su-meta small {
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.su-out {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border: 1px solid rgba(248, 113, 113, 0.45);
+  border-radius: 9px;
+  background: rgba(239, 68, 68, 0.16);
+  color: #fca5a5;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.su-out:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.su-caption {
+  display: block;
+  margin-top: -8px;
+  text-align: center;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+/* ---------- Breadcrumb topbar ---------- */
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15.5px;
+  min-width: 0;
+}
+
+.crumb b {
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.crumb i {
+  color: #cbd5e1;
+  font-style: normal;
+}
+
+.crumb span {
+  color: var(--muted);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Lencana sekolah ---------- */
+.school-badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 12px 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.sb-ico {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  font-size: 15px;
+  border-radius: 9px;
+  background: var(--accent-soft);
+}
+
+.sb-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  min-width: 0;
+}
+
+.sb-text strong {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.sb-text small {
+  font-size: 10.5px;
+  color: var(--muted);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1180px) {
+  .sb-text small {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .school-badge {
+    display: none;
+  }
+}

@@ -1,0 +1,366 @@
+/* =========================================================
+   Dashboard — tren koleksi, populer, dan donut kategori
+   ========================================================= */
+
+/* Tiga panel sejajar & saling mengisi tinggi baris (tidak ada ruang kosong) */
+.dash-charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+
+.dash-charts .panel {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Grafik garis ---------- */
+.tr-panel {
+  min-width: 0;
+}
+
+.tr-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Kotak pengukur: SVG mengisi 100% lebar & tinggi sisa ruang panel */
+.tr-plot {
+  position: relative;
+  flex: 1;
+  min-height: 220px;
+  min-width: 0;
+}
+
+.tr-legend {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+  flex: none;
+}
+
+.tr-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.tr-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tr-dot.accent { background: var(--accent); }
+.tr-dot.blue { background: var(--blue); }
+
+.tr-svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tr-grid {
+  stroke: #eef1f6;
+  stroke-width: 1;
+}
+
+.tr-y {
+  font-size: 10px;
+  fill: #94a3b8;
+}
+
+.tr-x {
+  font-size: 10.5px;
+  fill: #94a3b8;
+}
+
+.tr-line {
+  fill: none;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trDraw 1.6s ease 0.2s forwards;
+}
+
+.tr-line-a {
+  stroke: var(--accent);
+}
+
+.tr-line-b {
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-dasharray: 0.012 0.012;
+  animation-delay: 0.5s;
+}
+
+.tr-area {
+  opacity: 0;
+  animation: trFade 0.9s ease 1s forwards;
+}
+
+.tr-dot-a {
+  fill: #fff;
+  stroke: var(--accent);
+  stroke-width: 2.4;
+}
+
+.tr-peak {
+  fill: #fff;
+  stroke: var(--accent-dark);
+  stroke-width: 3.4;
+}
+
+.tr-tip rect {
+  fill: #0f172a;
+}
+
+.tr-tip text {
+  font-size: 12px;
+  font-weight: 700;
+  fill: #fff;
+}
+
+@keyframes trDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes trFade {
+  to { opacity: 1; }
+}
+
+/* ---------- Paling populer ---------- */
+.pop-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 14px;
+  flex: 1;
+}
+
+.pop-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13.5px;
+  margin-bottom: 6px;
+}
+
+.pop-top > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pop-top b {
+  font-size: 13px;
+}
+
+.pop-rank {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  flex: none;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+  font-style: normal;
+  color: #fff;
+  background: #94a3b8;
+}
+
+.pop-rank.rank-0 { background: var(--accent); }
+.pop-rank.rank-1 { background: var(--blue); }
+.pop-rank.rank-2 { background: var(--yellow); }
+
+.pop-rail {
+  display: block;
+  height: 9px;
+  border-radius: 999px;
+  background: #eef1f6;
+  overflow: hidden;
+}
+
+.pop-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #94a3b8;
+  transform-origin: left;
+  animation: popGrow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pop-fill.rank-0 { background: linear-gradient(90deg, #f87171, var(--accent)); }
+.pop-fill.rank-1 { background: linear-gradient(90deg, #60a5fa, var(--blue)); }
+.pop-fill.rank-2 { background: linear-gradient(90deg, #fcd34d, var(--yellow)); }
+.pop-fill.rank-3 { background: linear-gradient(90deg, #a78bfa, var(--purple)); }
+.pop-fill.rank-4 { background: linear-gradient(90deg, #6ee7b7, var(--green)); }
+
+@keyframes popGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ---------- Donut ---------- */
+.dn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.dn-ring {
+  width: 168px;
+  flex: none;
+  margin: 0 auto;
+}
+
+.dn-ring svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(-90deg);
+}
+
+.dn-track {
+  fill: none;
+  stroke: #f1f5f9;
+  stroke-width: 17;
+}
+
+.dn-slice {
+  stroke-linecap: butt;
+  opacity: 0;
+  animation: dnIn 0.5s ease forwards;
+}
+
+.dn-num,
+.dn-cap {
+  transform: rotate(90deg);
+  transform-origin: center;
+  text-anchor: middle;
+}
+
+.dn-num {
+  font-size: 26px;
+  font-weight: 800;
+  fill: var(--ink);
+}
+
+.dn-cap {
+  font-size: 11.5px;
+  fill: var(--muted);
+}
+
+@keyframes dnIn {
+  to { opacity: 1; }
+}
+
+.dn-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dn-legend li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+}
+
+.dn-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+  flex: none;
+}
+
+.dn-legend span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.dn-legend b {
+  font-size: 12.5px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1400px) {
+  .dash-charts {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .tr-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .dash-charts {
+    grid-template-columns: 1fr;
+  }
+
+  .tr-panel {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .tr-legend {
+    justify-content: flex-start;
+  }
+
+  .dn-ring {
+    width: 148px;
+  }
+
+  .dn-wrap {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr-line {
+    stroke-dashoffset: 0;
+  }
+
+  .tr-area,
+  .dn-slice {
+    opacity: 1;
+  }
+}
